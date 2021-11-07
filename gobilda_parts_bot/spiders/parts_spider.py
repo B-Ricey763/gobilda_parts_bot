@@ -26,7 +26,7 @@ class PartsSpider(scrapy.Spider):
 	def parse_product_page(self, response):
 		step_file = response.css('a.ext-zip::attr(href)').get()
 		name = response.css( 'h1.productView-title::text').get()
-		if step_file and 'Bundle' not in name:
+		if step_file and 'Bundle' not in name: # bundles will contain repeats, we don't want that
 			loader = ItemLoader(Product(), response=response)
 			loader.add_css('sku', 'span.productView-sku-input::text')
 			loader.add_value('file_urls', [f'https://www.gobilda.com{step_file}'])
