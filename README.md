@@ -4,9 +4,9 @@ A [ Scrapy ](https://scrapy.org/) spider written in python that scrapes almost t
 
 ## How to Run
 
-1. Install [ scrapy ](https://scrapy.org/) (assuming you already have python installed)
+1. Install [ scrapy ](https://scrapy.org/) and [ tqdm ](https://tqdm.github.io/) (assuming you already have python installed)
 ```cmd
-pip install scrapy
+pip install scrapy tqdm
 ```
 > Tip: if the installation fails, you might want to try installing scrapy in a [ virtualenv ](https://docs.python.org/3/tutorial/venv.html)
 
@@ -20,11 +20,13 @@ pip install scrapy
 ```
 > Feel free to change `FILES_STORE` to whatever suits your needs
 
-3. Run the `parts` spider:
+3. set `SKU_FILE_NAMES` (also defined in `settings.py`). By default, file names are the full product name as displayed on the goBILDA website. These names are long, which can cause problems with uploading to Fusion. To get filenames that consist only of the part's SKU, set `SKU_FILE_NAMES` to `True`.
+
+4. Run the `parts` spider:
 ```cmd
 scrapy crawl parts
 ```
-4. Wait for the `FILES_STORE` to populate, and you are good to go!
+5. Wait for the `FILES_STORE` to populate, and you are good to go!
 > Note: there will be some empty folders left behind in the models folder, like `full` and some with `assembly` in the name. Don't worry, nothing went wrong, I just didn't bother trying to find a simple solution to delete them.
 
 ## How it works
