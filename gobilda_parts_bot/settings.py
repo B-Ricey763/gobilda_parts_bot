@@ -69,6 +69,11 @@ ITEM_PIPELINES = {
 
 FILES_STORE = 'models'
 
+# Change filenames to be just SKUs instead of long product names
+# can be useful because Fusion refuses to upload files if their
+# names are too long. uses sku if True, full name if False.
+SKU_FILE_NAMES = False
+
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True

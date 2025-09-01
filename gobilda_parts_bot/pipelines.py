@@ -10,7 +10,7 @@ import os
 import re
 from itemadapter import ItemAdapter
 import zipfile
-from gobilda_parts_bot.settings import FILES_STORE
+from gobilda_parts_bot.settings import FILES_STORE, SKU_FILE_NAMES
 
 def get_valid_filename(name):
     s = str(name).strip().replace(' ', '_')
@@ -24,8 +24,7 @@ class GobildaPartsBotPipeline:
             path = adapter['files'][0]['path']
             # Item loaders give us a list with one value, so we have to access the first
             # element of the list to get the actual string data
-            sku = adapter['sku'][0]
-            name = get_valid_filename(adapter['name'][0])
+            name = adapter['sku'][0] if SKU_FILE_NAMES else get_valid_filename(adapter['name'][0])
 
             zip_path = f'{FILES_STORE}/{path}' 
             if exists(zip_path):
